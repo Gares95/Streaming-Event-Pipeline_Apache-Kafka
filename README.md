@@ -1,6 +1,6 @@
 # Streaming Event Pipeline with Apache Kafka
 ***
-This project includes files to create and define a streaming event pipeline around Apache Kafka and its ecosystem to develop a simulation that process information on the status of train lines in real time.
+This project includes files to create and define a streaming event pipeline around Apache Kafka and its ecosystem which will process data from the [Chicago Transit Authority](https://www.transitchicago.com/data/) to simulate the status of train lines in real time.
 
 ### Credits
 Udacity provided the template and the guidelines to start this project.
