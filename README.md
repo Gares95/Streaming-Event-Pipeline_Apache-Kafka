@@ -17,9 +17,6 @@ The program uses **Kafka Connect** to integrate data sources (in this case Postg
 **Producers**
 In the producers folder you will find the next files:
 - Weather.py: Python Scripts that emits weather data to our REST Proxy.
-- Weather.py: Python Scripts that emits weather data to our REST Proxy.
-- Weather.py: Python Scripts that emits weather data to our REST Proxy.
-- Weather.py: Python Scripts that emits weather data to our REST Proxy.
 
 ### Credits
 Udacity provided the template and the guidelines to start this project.
