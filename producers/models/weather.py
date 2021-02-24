@@ -32,7 +32,7 @@ class Weather(Producer):
     def __init__(self, month):
         
         super().__init__(
-            "com.udacity.weather.v1", 
+            "org.chicago.cta.weather.v1", 
             key_schema=Weather.key_schema,
             value_schema=Weather.value_schema,
             num_partitions=1,
@@ -96,5 +96,4 @@ class Weather(Producer):
             
         except:
             logger.info("weather kafka proxy integration incomplete - skipping")
-            pass
             

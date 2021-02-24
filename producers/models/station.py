@@ -28,7 +28,7 @@ class Station(Producer):
             .replace("'", "")
         )
 
-        topic_name = f"{com.udacity.trainStation.v1}" 
+        topic_name = f"{org.chicago.cta.train.v1}" 
         super().__init__(
             topic_name,
             key_schema=Station.key_schema,
@@ -61,11 +61,12 @@ class Station(Producer):
                         "prev_station_id": prev_station_id,
                         "prev_direction": prev_direction,
                 },
+                key_schema=self.key_schema,
+                value_schema=self.value_schema,
             )
         
         except:
             logger.info("arrival kafka integration incomplete - skipping")
-            pass
 
     def __str__(self):
         return "Station | {:^5} | {:<30} | Direction A: | {:^5} | departing to {:<30} | Direction B: | {:^5} | departing to {:<30} | ".format(

@@ -1,7 +1,7 @@
 {
     "type": "record",
     "name": "turnstile.value",
-    "namespace": "com.udacity",
+    "namespace": "org.chicago.cta",
     "fields": [
         {"name": "station_id", "type": "string"},
         {"name": "station_name", "type": "string"},

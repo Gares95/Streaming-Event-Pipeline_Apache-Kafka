@@ -38,7 +38,6 @@ class Producer:
         self.broker_properties = {
             "schema.registry.url": CachedSchemaRegistryClient(SCHEMA_REGISTRY_URL),
             "bootstrap.servers": BROKER_URL
-            
         }
 
         # If the topic does not already exist, try to create it
@@ -70,7 +69,6 @@ class Producer:
                 logger.info(f"topic creation kafka integration succesfull - topic: {self.topic_name}")
             except Exception as e:
                 logger.info("topic creation kafka integration incomplete - skipping")
-                pass
 
     def time_millis(self):
         return int(round(time.time() * 1000))

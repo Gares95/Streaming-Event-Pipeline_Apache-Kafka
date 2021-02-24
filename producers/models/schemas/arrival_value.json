@@ -1,7 +1,7 @@
 {
     "type": "record",
     "name": "arrival.value",
-    "namespace": "com.udacity",
+    "namespace": "org.chicago.cta",
     "fields": [
         {"name": "station_id", "type": "string"},
         {"name": "train_id", "type": "string"},
