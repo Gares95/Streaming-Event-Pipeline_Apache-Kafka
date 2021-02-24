@@ -16,7 +16,17 @@ The program uses **Kafka Connect** to integrate data sources (in this case Postg
 
 **Producers**
 In the producers folder you will find the next files:
-- Weather.py: Python Scripts that emits weather data to our REST Proxy.
+- Producer.py: Kafka producer that produces **Train Arrival** and **Turnstiles events** in our kafka cluster. Arrivals indicate that a train has arrived in a particular station and *turnstile events* indicates when a passenger has enter the station. 
+
+- Weather.py: Python Scripts that periodically emits weather data to our REST Proxy.
+
+- Connector.py: Jdbc source connector that connects to Postgres and extracts data from the *station* table and post it into Kafka.
+
+
+**Consumer**
+-Faust.py
+
+-Ksql.py
 
 ### Credits
 Udacity provided the template and the guidelines to start this project.
