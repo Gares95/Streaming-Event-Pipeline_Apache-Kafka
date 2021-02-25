@@ -16,15 +16,13 @@ KSQL_STATEMENT = """
 CREATE TABLE turnstile (
     station_id INT,
     station_name VARCHAR, 
-    line VARCHAR
-) WITH (
-    KAFKA_TOPIC = 'org.chicago.cta.turnstile.table.v1,
+    line VARCHAR) 
+WITH (KAFKA_TOPIC = 'org.chicago.cta.turnstile.v1',
     VALUE_FORMAT = 'avro',
-    KEY = 'station_id'
-);
+    KEY = 'station_id');
 
 CREATE TABLE TURNSTILE_SUMMARY AS
-SELECT station_id, COUNT(*) FROM turnstile GROUP BY station_id
+SELECT station_id, COUNT(*) FROM turnstile GROUP BY station_id;
 """
 
 def execute_statement():
