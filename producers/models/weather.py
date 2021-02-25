@@ -67,33 +67,30 @@ class Weather(Producer):
     def run(self, month):
         self._set_weather(month)
 
-        try:
+        resp = requests.post(
+            f"{Weather.rest_proxy_url}/topics/org.chicago.cta.weather.v1",
+            headers={"Content-Type": "application/vnd.kafka.json.v2+json"},
+            data=json.dumps(
+                {
+                    "key_schema": json.dumps(self.key_schema),
+                    "value_schema": json.dumps(self.value_schema),
+                    "records": [{
+                        "key": {"timestamp": self.time_millis()},
+                        "value":{
+                            "temperature": self.temp,
+                            "status": self.status,
+                        },
+                    }]
+                }
+            ),
+        )
+        resp.raise_for_status()
+        
+        logger.debug(
+        "sent weather data to kafka, temp: %s, status: %s",
+        self.temp,
+        self.status.name,
+        )
             
-            resp = requests.post(
-                f"{Weather.rest_proxy_url}/topics/weather.v1",
-                headers={"Content-Type": "application/vnd.kafka.json.v2+json"},
-                data=json.dumps(
-                    {
-                        "key_schema": self.key_schema,
-                        "value_schema": self.value_schema,
-                        "records": [{
-                            "key": {"timestamp": self.time_millis()},
-                            "value":{
-                                "temperature": self.temp,
-                                "status": self.status,
-                            },
-                        }]
-                    }
-                ),
-            )
-            resp.raise_for_status()
-            
-            logger.debug(
-            "sent weather data to kafka, temp: %s, status: %s",
-            self.temp,
-            self.status.name,
-            )
-            
-        except:
-            logger.info("weather kafka proxy integration incomplete - skipping")
+        # logger.info("weather kafka proxy integration incomplete - skipping")
             

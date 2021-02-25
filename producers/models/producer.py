@@ -55,8 +55,7 @@ class Producer:
         client = AdminClient({"bootstrap.servers": BROKER_URL})
     
         futures = client.create_topics(
-            [
-                NewTopic(
+            [NewTopic(
                 topic = self.topic_name,
                 num_partitions = self.num_partitions,
                 replication_factor = self.num_replicas
@@ -76,11 +75,10 @@ class Producer:
     def close(self):
         """Prepares the producer for exit by cleaning up the producer"""
         # Close producer
-        try:
-            self.producer.flush()
-            self.producer.close()
-        except:
-            logger.info("producer close incomplete - skipping")
+        
+        self.producer.flush()
+        self.producer.close()
+        
 
     def time_millis(self):
         """Use this function to get the key for Kafka Events"""
