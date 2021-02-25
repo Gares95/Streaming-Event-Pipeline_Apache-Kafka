@@ -83,7 +83,7 @@ class KafkaConsumer:
             except KeyError as e:
                 print(f"Failed to unpack message {e}")
                           
-        logger.info("_consume is incomplete - skipping")
+        # logger.info("_consume is incomplete - skipping")
         return 0
 
 
