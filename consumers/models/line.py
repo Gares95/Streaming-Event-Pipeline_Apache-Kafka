@@ -63,7 +63,7 @@ class Line:
                 self._handle_station(value)
             except Exception as e:
                 logger.fatal("bad station? %s, %s", value, e)
-        elif message.topic() == "org.chicago.cta.train.v1": # Conditional to the arrival topic
+        elif message.topic() == "org.chicago.cta.stations.arrivals.v1": # Conditional to the arrival topic
             self._handle_arrival(message)
         elif message.topic() == "org.chicago.cta.turnstile.table.v1": # Conditional to the KSQL Turnstile Summary Topic
             json_data = json.loads(message.value())
