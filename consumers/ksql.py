@@ -18,15 +18,14 @@ CREATE TABLE turnstile (
     station_name VARCHAR, 
     line VARCHAR
 ) WITH (
-    KAFKA_TOPIC = 'org.chicago.cta.station.arrivals.v1',
+    KAFKA_TOPIC = 'org.chicago.cta.turnstile.table.v1,
     VALUE_FORMAT = 'avro',
     KEY = 'station_id'
 );
 
-CREATE TABLE turnstile_summary AS
+CREATE TABLE TURNSTILE_SUMMARY AS
 SELECT station_id, COUNT(*) FROM turnstile GROUP BY station_id
 """
-
 
 def execute_statement():
     """Executes the KSQL statement against the KSQL API"""
@@ -37,7 +36,7 @@ def execute_statement():
 
     resp = requests.post(
         f"{KSQL_URL}/ksql",
-        headers={"Content-Type": "application/vnd.ksql.v1+json"},
+        headers={"Content-Type": "application/vnd.ksql.v1+json; charset=utf-8"},
         data=json.dumps(
             {
                 "ksql": KSQL_STATEMENT,
