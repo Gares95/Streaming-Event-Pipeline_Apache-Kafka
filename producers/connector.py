@@ -21,36 +21,34 @@ def configure_connector():
         return
 
 
-    try:
-        resp = requests.post(
-            KAFKA_CONNECT_URL,
-            headers={"Content-Type": "application/json"},
-            data=json.dumps({
-                "name": CONNECTOR_NAME,
-                "config": {
-                    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
-                    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
-                    "key.converter.schemas.enable": "false",
-                    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
-                    "value.converter.schemas.enable": "false",
-                    "batch.max.rows": "500",
-                    "connection.url": "jdbc:postgresql://postgres:5423/cta",
-                    "connection.user": "root",
-                    "connection.password": "pass",
-                    "table.whitelist": "stations",
-                    "mode": "incrementing",
-                    "incrementing.column.name": "stop_id",
-                    "topic.prefix": "org.chicago.cta",
-                    "poll.interval.ms": "1000",
-                }
-            }),
-        )
+    resp = requests.post(
+        KAFKA_CONNECT_URL,
+        headers={"Content-Type": "application/json"},
+        data=json.dumps({
+            "name": CONNECTOR_NAME,
+            "config": {
+                "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+                "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+                "key.converter.schemas.enable": "false",
+                "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+                "value.converter.schemas.enable": "false",
+                "batch.max.rows": "500",
+                "connection.url": "jdbc:postgresql://postgres:5423/cta",
+                "connection.user": "root",
+                "connection.password": "pass",
+                "table.whitelist": "stations",
+                "mode": "incrementing",
+                "incrementing.column.name": "stop_id",
+                "topic.prefix": "org.chicago.cta",
+                "poll.interval.ms": "1000",
+            }
+        }),
+    )
 
-        ## Ensure a healthy response was given
-        resp.raise_for_status()
-        logging.debug("connector created successfully")
-    except:
-        logger.info("connector code not completed skipping connector creation")
+    ## Ensure a healthy response was given
+    resp.raise_for_status()
+    logging.debug("connector created successfully")
+    # logger.info("connector code not completed skipping connector creation")
 
 if __name__ == "__main__":
     configure_connector()
