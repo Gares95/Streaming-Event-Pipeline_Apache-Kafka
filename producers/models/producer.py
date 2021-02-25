@@ -36,7 +36,7 @@ class Producer:
 
         # Broker properties
         self.broker_properties = {
-            "schema.registry.url": CachedSchemaRegistryClient(SCHEMA_REGISTRY_URL),
+            "schema.registry.url": SCHEMA_REGISTRY_URL,
             "bootstrap.servers": BROKER_URL
         }
 
@@ -46,7 +46,7 @@ class Producer:
             Producer.existing_topics.add(self.topic_name)
 
         # Configure the AvroProducer
-         self.producer = AvroProducer(config = self.broker_properties, default_key_schema=self.key_schema, default_value_schema = self.value_schema
+        self.producer = AvroProducer(config = self.broker_properties, default_key_schema=self.key_schema, default_value_schema = self.value_schema
          )
 
     def create_topic(self):
@@ -58,8 +58,8 @@ class Producer:
             [
                 NewTopic(
                 topic = self.topic_name,
-                num_partitions = num_partitions,
-                replication_factor = num_replicas
+                num_partitions = self.num_partitions,
+                replication_factor = self.num_replicas
                 )
             ]
         )
