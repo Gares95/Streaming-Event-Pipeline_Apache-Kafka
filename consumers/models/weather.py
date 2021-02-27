@@ -17,7 +17,7 @@ class Weather:
         """Handles incoming weather data"""
         
         value = json.loads(message.value())
-        weather_temp = value.get("temperature")
-        weather_status = value.get("status")
+        self.temperature = value.get("temperature")
+        self.status = value.get("status")
             
         # logger.info("weather process_message is incomplete - skipping")
