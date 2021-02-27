@@ -67,7 +67,7 @@ class Producer:
                 future.result()
                 logger.info(f"topic creation kafka integration succesfull - topic: {self.topic_name}")
             except Exception as e:
-                logger.info("topic creation kafka integration incomplete - skipping")
+                logger.error(f"{self.topic_name} topic not created: {e}")
 
     def time_millis(self):
         return int(round(time.time() * 1000))
