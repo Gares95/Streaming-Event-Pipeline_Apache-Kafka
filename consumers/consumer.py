@@ -36,8 +36,7 @@ class KafkaConsumer:
             "schema.registry.url": SCHEMA_REGISTRY_URL,
             "bootstrap.servers": BROKER_URL,
             "group.id": "0-PublicTransport",
-            "session.timeout.ms": consume_timeout,
-            "auto.offset.reset": offset_earliest
+            "default.topic.config": {"auto.offset.reset": "earliest"}
             
         }
 
