@@ -48,7 +48,7 @@ class Turnstile(Producer):
                 value={
                         "station_id": self.station.station_id,
                         "station_name": self.station.name,
-                        "line": self.color,
+                        "line": self.station.color.name,
                 },
             key_schema=self.key_schema,
             value_schema=self.value_schema,
