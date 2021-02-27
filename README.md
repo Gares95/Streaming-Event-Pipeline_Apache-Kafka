@@ -2,7 +2,7 @@
 
 This project includes files to create and define a streaming event pipeline around Apache Kafka and its ecosystem which will process data from the [Chicago Transit Authority](https://www.transitchicago.com/data/) **(CTA)** to simulate the status of train lines in real time.
 
-With this repository it will be possible to monitor movements of trains from station to station using your web browser through *http://localhost:8889* (the Transit Status Page).
+With this repository it will be possible to monitor movements of trains from station to station using your web browser through the Transit Status Page: *http://localhost:8889*.
 
 ![Transit Status Page](https://raw.githubusercontent.com/Gares95/Streaming-Event-Pipeline_Apache-Kafka/master/Img/Website-page.png)
 
@@ -37,7 +37,7 @@ In the producer folder you will find the next files:
     - turnstile.py: Creates a turnstile data producer.
     - weather.py: Python Script that periodically emits weather data to our REST Proxy.
 
-- Schemas: This folder contains the avro schemas for the different types producer and consumed by the Kafka cluster.
+- Schemas: This folder contains the avro schemas for the different producer types that are consumed by the Kafka cluster.
 
 
 **Consumer**
@@ -105,7 +105,7 @@ When configuring services that run within Docker-Compose, like Kafka Connect, yo
             "poll.interval.ms": "1000"
         }
       }' \
-      http://kafka-connect:8083/connectors
+      http://localhost:8083/connectors
 
 
 ## Running the simulation
