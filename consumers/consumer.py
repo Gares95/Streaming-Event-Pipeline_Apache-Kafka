@@ -33,7 +33,6 @@ class KafkaConsumer:
         self.offset_earliest = offset_earliest
 
         self.broker_properties = {
-            "schema.registry.url": SCHEMA_REGISTRY_URL,
             "bootstrap.servers": BROKER_URL,
             "group.id": "0-PublicTransport",
             "default.topic.config": {"auto.offset.reset": "earliest"}
