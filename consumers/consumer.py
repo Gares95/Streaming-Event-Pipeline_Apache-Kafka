@@ -36,7 +36,7 @@ class KafkaConsumer:
             "schema.registry.url": SCHEMA_REGISTRY_URL,
             "bootstrap.servers": BROKER_URL,
             "group.id": "0-PublicTransport",
-            "session.timeout.ms": consume_timeout
+            "session.timeout.ms": consume_timeout,
             "auto.offset.reset": offset_earliest
             
         }
@@ -77,7 +77,7 @@ class KafkaConsumer:
             print(f"error from consumer {message.error()}")
         else:
             try:
-                print(f"message recieved: {message.value()})
+                print(f"message recieved: {message.value()}")
                 self.message_handler(message)
                 return 1
             except KeyError as e:
