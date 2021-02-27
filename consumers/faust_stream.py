@@ -32,10 +32,10 @@ app = faust.App("stations-stream", broker="kafka://localhost:9092", store="memor
 
 topic = app.topic("org.chicago.cta.stations", value_type=Station)
 
-out_topic = app.topic("org.chicago.cta.output", partitions=1)
+out_topic = app.topic("org.chicago.cta.stations.table.v1", partitions=1)
 table = app.Table(
     "org.chicago.cta.stations.table.v1",
-    default=str,
+    default=TransformedStation,
     partitions=1,
     changelog_topic=out_topic,
 )
