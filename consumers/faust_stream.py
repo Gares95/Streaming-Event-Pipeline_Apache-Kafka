@@ -40,7 +40,7 @@ table = app.Table(
     changelog_topic=out_topic,
 )
 
-# Auxiliar function to detect line
+# Auxiliar function to configure line depending on the status of the station
 def detect_line(Station):
     if(Station.red):
         line = 'red'
