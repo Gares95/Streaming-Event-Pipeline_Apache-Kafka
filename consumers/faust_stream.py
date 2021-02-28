@@ -48,7 +48,7 @@ def detect_line(Station):
         line = 'red'
     elif(Station.blue):
         line = 'red'
-    else(Station.green):
+    else:
         line = 'green'
     return line
      
