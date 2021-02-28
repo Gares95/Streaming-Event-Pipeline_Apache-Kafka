@@ -34,9 +34,7 @@ class KafkaConsumer:
 
         self.broker_properties = {
             "bootstrap.servers": BROKER_URL,
-            "group.id": "0-PublicTransport",
-            "default.topic.config": {"auto.offset.reset": offset_earliest}
-            
+            "group.id": "0-PublicTransport"
         }
 
         if is_avro is True:
@@ -51,9 +49,10 @@ class KafkaConsumer:
         """Callback for when topic assignment takes place"""
         # logger.info("on_assign is incomplete - skipping")
         
+        # Use offset_earliest to determine the right offset for the consumer
         for partition in partitions:
-            if self.offset_earliest == "earliest":
-                partition.offset = OFFSET_BEGINNING
+            if self.offset_earliest:
+                partition.offset = "earliest"
          
         logger.info("partitions assigned for %s", self.topic_name_pattern)
         consumer.assign(partitions)
