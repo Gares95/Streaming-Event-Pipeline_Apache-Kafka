@@ -22,7 +22,7 @@ WITH (KAFKA_TOPIC = 'org.chicago.cta.turnstile.v1',
     KEY = 'station_id');
 
 CREATE TABLE TURNSTILE_SUMMARY AS
-SELECT station_id, COUNT(*) FROM turnstile GROUP BY station_id;
+SELECT station_id, COUNT(*) AS Count FROM turnstile GROUP BY station_id;
 """
 
 def execute_statement():
