@@ -35,7 +35,7 @@ class KafkaConsumer:
         self.broker_properties = {
             "bootstrap.servers": BROKER_URL,
             "group.id": "0-PublicTransport",
-            "default.topic.config": {"auto.offset.reset": "earliest"}
+            "default.topic.config": {"auto.offset.reset": offset_earliest}
             
         }
 
