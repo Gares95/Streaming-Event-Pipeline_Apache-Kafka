@@ -43,11 +43,12 @@ table = app.Table(
 
 # Auxiliar function to configure line depending on the status of the station
 def detect_line(Station):
+    line = ""
     if(Station.red):
         line = 'red'
     elif(Station.blue):
         line = 'red'
-    elif(Station.green):
+    else(Station.green):
         line = 'green'
     return line
      
@@ -56,8 +57,7 @@ def detect_line(Station):
 async def stationsEvent(stream):
     async for st in stream:
         line = detect_line(st)
-        tfs = TransformedStation(st.station_id, st.station_name,st.order,line)
-        table[st.station_id] = tfs
+        table[st.station_id] = TransformedStation(station_id= st.station_id, station_name = st.station_name,order = st.order,line = line)
         
 
 if __name__ == "__main__":
