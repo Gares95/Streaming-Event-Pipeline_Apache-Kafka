@@ -72,13 +72,13 @@ class Weather(Producer):
             headers={"Content-Type": "application/vnd.kafka.avro.v2+json"},
             data=json.dumps(
                 {
-                    "key_schema": json.dumps(self.key_schema),
-                    "value_schema": json.dumps(self.value_schema),
+                    "key_schema": json.dumps(Weather.key_schema),
+                    "value_schema": json.dumps(Weather.value_schema),
                     "records": [{
                         "key": {"timestamp": self.time_millis()},
                         "value":{
                             "temperature": self.temp,
-                            "status": self.status,
+                            "status": self.status.name,
                         },
                     }]
                 }
@@ -89,7 +89,7 @@ class Weather(Producer):
         logger.debug(
         "sent weather data to kafka, temp: %s, status: %s",
         self.temp,
-        self.status.name,
+        self.status,
         )
             
         # logger.info("weather kafka proxy integration incomplete - skipping")
